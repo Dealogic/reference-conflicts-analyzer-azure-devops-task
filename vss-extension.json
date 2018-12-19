@@ -1,0 +1,68 @@
+{
+    "manifestVersion": 1,
+    "id": "reference-conflicts-analyzer-azure-devops-task",
+    "version": "0.1.0",
+    "name": "Reference Conflicts Analyzer",
+    "description": "Analyze reference conflicts and dependency graph of .NET applications.",
+    "publisher": "Dealogic",
+    "public": true,
+    "icons": {
+        "default": "icon.png",
+        "large": "icon-large.png"
+    },
+    "categories": [
+        "Build and release"
+    ],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "screenshots": [],
+    "content": {
+        "details": {
+            "path": "DETAILS.md"
+        },
+        "license": {
+            "path": "LICENSE"
+        }
+    },
+    "links": {
+        "getstarted": {
+            "uri": "https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task"
+        },
+        "support": {
+            "uri": "https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/issues"
+        },
+        "repository": {
+            "uri": "https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task"
+        },
+        "issues": {
+            "uri": "https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/issues"
+        }
+    },
+    "tags": [
+        "Dependency",
+        "build",
+        "Reference",
+        "Conflicts",
+        "DGML"
+    ],
+    "files": [
+        {
+            "path": "tasks/reference-conflicts-analyzer-build-task"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "reference-conflicts-analyzer",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/reference-conflicts-analyzer"
+            }
+        }
+    ]
+}

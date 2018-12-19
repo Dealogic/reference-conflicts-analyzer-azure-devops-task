@@ -1,0 +1,12 @@
+node_modules
+typings
+tasks/**/*.js
+tasks/**/*.js.map
+**/npm-debug.log
+**/.taskkey
+dist
+**/test-results.xml
+updateVersion.js
+updateVersion.js.map
+version.js
+version.js.map
