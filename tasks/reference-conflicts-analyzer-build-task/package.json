@@ -1,6 +1,6 @@
 {
   "name": "reference-conflicts-analyzer-build-task",
-  "version": "0.1.0",
+  "version": "0.1.11",
   "description": "Analyze reference conflicts and dependency graph of .NET applications.",
   "main": "index.js",
   "scripts": {},
@@ -14,7 +14,8 @@
   "author": "Dealogic",
   "license": "MIT",
   "dependencies": {
-    "azure-pipelines-task-lib": "2.7.7"
+    "azure-pipelines-task-lib": "2.7.7",
+    "filenamify": "2.1.0"
   },
   "devDependencies": {}
 }
