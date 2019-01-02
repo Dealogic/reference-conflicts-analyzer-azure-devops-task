@@ -31,14 +31,16 @@ async function run(): Promise<void> {
         const pathOfFileToAnalyze = tl.getPathInput("pathOfFileToAnalyze", true);
         const pathOfConfigFile = tl.getPathInput("pathOfConfigFile", false);
         const ignoreSystemAssemblies = tl.getBoolInput("ignoreSystemAssemblies", true);
-        const referenceConflictsAnalyzerCliDownloadUrl = tl.getInput("referenceConflictsAnalyzerCliDownloadUrl", true);
+        const treatConflictsAs = tl.getInput("treatConflictsAs", true);
         const workingFolder = tl.getPathInput("workingFolder", false);
+        const referenceConflictsAnalyzerCliDownloadUrl = tl.getInput("referenceConflictsAnalyzerCliDownloadUrl", true);
 
         console.log(`pathOfFileToAnalyze: ${pathOfFileToAnalyze}`);
         console.log(`pathOfConfigFile: ${pathOfConfigFile}`);
         console.log(`ignoreSystemAssemblies: ${ignoreSystemAssemblies}`);
-        console.log(`referenceConflictsAnalyzerCliDownloadUrl: ${referenceConflictsAnalyzerCliDownloadUrl}`);
+        console.log(`treatConflictsAs: ${treatConflictsAs}`);
         console.log(`workingFolder: ${workingFolder}`);
+        console.log(`referenceConflictsAnalyzerCliDownloadUrl: ${referenceConflictsAnalyzerCliDownloadUrl}`);
 
         tl.cd(workingFolder);
         process.chdir(workingFolder);
@@ -53,7 +55,7 @@ async function run(): Promise<void> {
 
         await downloadReferenceConflictsAnalyzerCli(referenceConflictsAnalyzerCliDownloadUrl, tempWorkingFolder);
         await downloadDgmlToPngCli(tempWorkingFolder);
-        await analyzeReferenceConflicts(tempWorkingFolder, pathOfFileToAnalyze, ignoreSystemAssemblies, pathOfConfigFile);
+        await analyzeReferenceConflicts(tempWorkingFolder, taskDisplayName, treatConflictsAs, pathOfFileToAnalyze, ignoreSystemAssemblies, pathOfConfigFile);
     } catch (err) {
         tl.setResult(tl.TaskResult.Failed, `${taskDisplayName} failed`);
         tl.error(err);

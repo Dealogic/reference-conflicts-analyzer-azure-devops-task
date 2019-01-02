@@ -12,6 +12,7 @@ const runTestTask = (testRunConfiguration: ITestRunConfiguration) => {
     taskMockRunner.setInput("pathOfFileToAnalyze", testRunConfiguration.pathOfFileToAnalyze);
     taskMockRunner.setInput("pathOfConfigFile", testRunConfiguration.pathOfConfigFile);
     taskMockRunner.setInput("referenceConflictsAnalyzerCliDownloadUrl", testRunConfiguration.referenceConflictsAnalyzerCliDownloadUrl);
+    taskMockRunner.setInput("treatConflictsAs", "warnings");
 
     if (testRunConfiguration.workingFolder) {
         taskMockRunner.setInput("workingFolder", testRunConfiguration.workingFolder);

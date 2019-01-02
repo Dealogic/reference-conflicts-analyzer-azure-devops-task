@@ -31,19 +31,20 @@ const executeReferenceConflictsAnalyzerCli = async (workingFolder: string, pathO
     });
 };
 
-export const analyzeReferenceConflicts = async (workingFolder: string, pathOfFileToAnalyze: string, ignoreSystemAssemblies: boolean, pathOfConfigFile?: string) => {
-    console.log("Running reference conflicts analyzer...");
+export const analyzeReferenceConflicts =
+    async (workingFolder: string, taskDisplayName: string, treatConflictsAs: string, pathOfFileToAnalyze: string, ignoreSystemAssemblies: boolean, pathOfConfigFile?: string) => {
+        console.log("Running reference conflicts analyzer...");
 
-    await executeReferenceConflictsAnalyzerCli(workingFolder, pathOfFileToAnalyze, ignoreSystemAssemblies, pathOfConfigFile);
+        await executeReferenceConflictsAnalyzerCli(workingFolder, pathOfFileToAnalyze, ignoreSystemAssemblies, pathOfConfigFile);
 
-    const files = fs.readdirSync(workingFolder);
+        const files = fs.readdirSync(workingFolder);
 
-    for (const file of files) {
-        if (file.endsWith(".dgml")) {
-            console.log(path.resolve(workingFolder, file));
-            fs.renameSync(path.resolve(workingFolder, file), path.resolve(workingFolder, "rca.dgml"));
-            reportConflicts(workingFolder);
-            await convertDgmlToImage(workingFolder);
+        for (const file of files) {
+            if (file.endsWith(".dgml")) {
+                console.log(path.resolve(workingFolder, file));
+                fs.renameSync(path.resolve(workingFolder, file), path.resolve(workingFolder, "rca.dgml"));
+                reportConflicts(workingFolder, treatConflictsAs);
+                await convertDgmlToImage(workingFolder, taskDisplayName);
+            }
         }
-    }
-};
+    };

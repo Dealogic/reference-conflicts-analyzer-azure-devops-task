@@ -52,6 +52,19 @@
             "helpMarkDown": "Exclude from the analysis assemblies with names starting with 'System'. Default value is true."
         },
         {
+            "name": "treatConflictsAs",
+            "type": "pickList",
+            "label": "treat conflicts as",
+            "defaultValue": "warnings",
+            "required": true,
+            "helpMarkDown": "How to treat reference conflicts.",
+            "options": {
+                "warnings": "warnings",
+                "errors": "errors",
+                "info": "info"
+            }
+        },
+        {
             "name": "workingFolder",
             "type": "filePath",
             "label": "working folder",
