@@ -1,8 +1,11 @@
 import * as tl from "azure-pipelines-task-lib/task";
 import * as fs from "fs";
 import * as path from "path";
-import * as child_process from "child_process";
 import { downloadReferenceConflictsAnalyzerCli } from "./referenceConflictsAnalyzerCliDownloader";
+import { analyzeReferenceConflicts } from "./referenceConflictsAnalyzer";
+import * as rimraf from "rimraf";
+import { downloadDgmlToPngCli } from "./dgmlToPngCliDownloader";
+import * as filenamify from "filenamify";
 
 const listDirectoryItems = (dir: string) => {
     console.log(dir);
@@ -31,8 +34,8 @@ async function run(): Promise<void> {
         const referenceConflictsAnalyzerCliDownloadUrl = tl.getInput("referenceConflictsAnalyzerCliDownloadUrl", true);
         const workingFolder = tl.getPathInput("workingFolder", false);
 
-        console.log(`fileToAnalyze: ${pathOfFileToAnalyze}`);
-        console.log(`configFile: ${pathOfConfigFile}`);
+        console.log(`pathOfFileToAnalyze: ${pathOfFileToAnalyze}`);
+        console.log(`pathOfConfigFile: ${pathOfConfigFile}`);
         console.log(`ignoreSystemAssemblies: ${ignoreSystemAssemblies}`);
         console.log(`referenceConflictsAnalyzerCliDownloadUrl: ${referenceConflictsAnalyzerCliDownloadUrl}`);
         console.log(`workingFolder: ${workingFolder}`);
@@ -40,7 +43,17 @@ async function run(): Promise<void> {
         tl.cd(workingFolder);
         process.chdir(workingFolder);
 
-        await downloadReferenceConflictsAnalyzerCli(referenceConflictsAnalyzerCliDownloadUrl);
+        const tempWorkingFolder = path.resolve(workingFolder, filenamify(taskDisplayName));
+
+        if (fs.existsSync(tempWorkingFolder)) {
+            rimraf.sync(tempWorkingFolder);
+        }
+
+        fs.mkdirSync(tempWorkingFolder);
+
+        await downloadReferenceConflictsAnalyzerCli(referenceConflictsAnalyzerCliDownloadUrl, tempWorkingFolder);
+        await downloadDgmlToPngCli(tempWorkingFolder);
+        await analyzeReferenceConflicts(tempWorkingFolder, pathOfFileToAnalyze, ignoreSystemAssemblies, pathOfConfigFile);
     } catch (err) {
         tl.setResult(tl.TaskResult.Failed, `${taskDisplayName} failed`);
         tl.error(err);
