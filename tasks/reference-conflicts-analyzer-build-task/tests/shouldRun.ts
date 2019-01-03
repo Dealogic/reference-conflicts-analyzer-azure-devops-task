@@ -1,8 +1,6 @@
 import * as path from "path";
 import { MockTestRunner } from "azure-pipelines-task-lib/mock-test";
 import { assert } from "chai";
-import * as fs from "fs";
-import * as os from "os";
 
 const mockRunnerDefinitions = "mockRunnerDefinitions";
 
@@ -14,7 +12,13 @@ export function executeTest(done: MochaDone): void {
     const testRunner = new MockTestRunner(testPath);
 
     testRunner.run();
-    console.log(testRunner.stdout);
+
+    assert.isNotTrue(testRunner.failed, testRunner.stdout);
+    assert.equal(
+        testRunner.warningIssues[0],
+        // tslint:disable-next-line:max-line-length
+        "Different versions of the assembly called 'LibraryA' are referenced by other assembiles. Version 2.0.0.0 is used by 'FirstUserOfLibraryA'. Version 1.2.0.0 is used by 'SecondUserOfLibraryA'.",
+        testRunner.stdout);
 
     done();
 }

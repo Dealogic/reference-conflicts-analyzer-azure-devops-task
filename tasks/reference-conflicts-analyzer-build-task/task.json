@@ -17,7 +17,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 11
+        "Patch": 34
     },
     "minimumAgentVersion": "1.95.0",
     "groups": [
@@ -52,12 +52,38 @@
             "helpMarkDown": "Exclude from the analysis assemblies with names starting with 'System'. Default value is true."
         },
         {
-            "name": "treatConflictsAs",
+            "name": "treatVersionConflictsAs",
             "type": "pickList",
             "label": "treat conflicts as",
             "defaultValue": "warnings",
             "required": true,
-            "helpMarkDown": "How to treat reference conflicts.",
+            "helpMarkDown": "How to treat version conflicts.",
+            "options": {
+                "warnings": "warnings",
+                "errors": "errors",
+                "info": "info"
+            }
+        },
+        {
+            "name": "treatResolvedVersionConflictsAs",
+            "type": "pickList",
+            "label": "treat conflicts as",
+            "defaultValue": "warnings",
+            "required": true,
+            "helpMarkDown": "How to treat version conflicts are resolved by configuration file.",
+            "options": {
+                "warnings": "warnings",
+                "errors": "errors",
+                "info": "info"
+            }
+        },
+        {
+            "name": "treatOtherConflictsAs",
+            "type": "pickList",
+            "label": "treat conflicts as",
+            "defaultValue": "warnings",
+            "required": true,
+            "helpMarkDown": "How to treat other reference conflicts.",
             "options": {
                 "warnings": "warnings",
                 "errors": "errors",
