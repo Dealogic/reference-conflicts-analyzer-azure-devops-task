@@ -18,8 +18,6 @@
 * [Source Code](#source-code)
 * [What The Build Step Does](#what-the-build-step-does)
 * [Usage](#usage)
-    * [Advanced Settings](#advanced-settings)
-    * [Multiple Build Steps](#multiple-build-steps)
 * [Summary of Task Settings](#summary-of-task-settings)
 * [Release Notes](#release-notes)
 * [License](#license)
@@ -46,6 +44,12 @@ Add the following step into your `yaml` build definition:
   inputs:
     pathOfFileToAnalyze: '{The entry point of the .NET application to analyze.}'
 ```
+
+Any reference conflicts can be reported as an issue:
+![Reported Issues](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/IssuesAreReported.png)
+
+The dependency graph is reported as a diagram onto the build summary page:
+![Dependency Graph](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/DiagramOnBuildResult.png)
 
 See the next section for additional settings.
 

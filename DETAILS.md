@@ -18,8 +18,6 @@
 * [Source Code](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension#source-code)
 * [What The Build Step Does](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension#what-the-build-step-does)
 * [Usage](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension#usage)
-    * [Advanced Settings](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension#advanced-settings)
-    * [Multiple Build Steps](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension#multiple-build-steps)
 * [Summary of Task Settings](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension#summary-of-task-settings)
 * [Release Notes](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension#release-notes)
 * [License](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension#license)
@@ -46,6 +44,12 @@ Add the following step into your `yaml` build definition:
   inputs:
     pathOfFileToAnalyze: '{The entry point of the .NET application to analyze.}'
 ```
+
+Any reference conflicts can be reported as an issue:
+![Reported Issues](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/IssuesAreReported.png)
+
+The dependency graph is reported as a diagram onto the build summary page:
+![Dependency Graph](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/DiagramOnBuildResult.png)
 
 See the next section for additional settings.
 
