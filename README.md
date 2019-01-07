@@ -38,7 +38,7 @@ This build step is using Mykola Tarasyuk's [reference conflicts analyzer command
 
 ## <a id="usage"></a>Usage
 
-Add the following step into your `yml` build definition:
+Add the following step into your `yaml` build definition:
 
 ```
 - task: Dealogic.reference-conflicts-analyzer-azure-devops-task.reference-conflicts-analyzer.reference-conflicts-analyzer@1

@@ -1,0 +1,28 @@
+queue:
+  name: Hosted VS2017
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node 10.x'
+  inputs:
+    versionSpec: 10.x
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
+  displayName: 'Use Yarn 1.x'
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+  displayName: 'Yarn'
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+  displayName: 'Yarn release'
+  inputs:
+    Arguments: release
+
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+  displayName: 'Yarn test-reporter'
+  inputs:
+    Arguments: 'test-reporter'
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results ./test-results.xml'
+  inputs:
+    testResultsFiles: './test-results.xml'
