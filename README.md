@@ -8,6 +8,10 @@
 
 ![build status](https://dealogic.visualstudio.com/DefaultCollection/_apis/public/build/definitions/4cd19643-db3a-4dcc-b481-76a7800dd64d/7871/badge)
 
+### Special Thanks to
+## Mykola Tarasyuk for creating the [Reference Conflicts Analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension).
+## Chris Lovett for creating the [DgmlImage command line tool](https://www.nuget.org/packages/DgmlImage/).
+
 ## Content
 
 * [Installation](#installation)
@@ -22,15 +26,15 @@
 
 ## <a id="installation"></a>Installation
 
-Installation can be done using [Visual Studio MarketPlace](https://marketplace.visualstudio.com/items?itemName=Dealogic.webpack-vsts-extension).
+Installation can be done using [Azure DevOps MarketPlace](https://marketplace.visualstudio.com/items?itemName=Dealogic.reference-conflicts-analyzer-azure-devops-task).
 
 ## <a id="source-code"></a>Source Code
 
-Source code can be found on [GitHub](https://github.com/Dealogic/webpack-vsts-extension).
+Source code can be found on [GitHub](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task).
 
 ## <a id="what-the-build-step-does"></a>What The Build Step Does
 
-This build step is using the webpack's command line tool to compile a 'web' application into a bundle. The result, warnings and errors are reported onto the build summary section.
+This build step is using Mykola Tarasyuk's [reference conflicts analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension) to produce a `dgml` file that represents the dependency graph of a .NET application. With using the [DgmlImage command line tool by Chris Lovett](https://www.nuget.org/packages/DgmlImage/) to create an image that can be attached as a build summary section on to the build result page.
 
 ## <a id="usage"></a>Usage
 
