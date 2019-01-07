@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "reference-conflicts-analyzer-azure-devops-task",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "name": "Reference Conflicts Analyzer",
     "description": "Analyze reference conflicts and dependency graph of .NET applications.",
     "publisher": "Dealogic",
@@ -19,9 +19,15 @@
         }
     ],
     "screenshots": [
-        "./screenshots/DiagramOnBuildResult.png",
-        "./screenshots/IssuesAreReported.png",
-        "./screenshots/Usage.png"
+        {
+            "path": "screenshots/DiagramOnBuildResult.png"
+        },
+        {
+            "path": "screenshots/IssuesAreReported.png"
+        },
+        {
+            "path": "screenshots/Usage.png"
+        }
     ],
     "content": {
         "details": {
