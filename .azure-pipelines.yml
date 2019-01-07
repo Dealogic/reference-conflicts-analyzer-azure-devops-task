@@ -27,4 +27,10 @@ steps:
 - task: PublishTestResults@2
   displayName: 'Publish Test Results ./test-results.xml'
   inputs:
-    testResultsFiles: './test-results.xml'
+    testResultsFiles: '**/test-results.xml'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: dist'
+  inputs:
+    PathtoPublish: dist
+    ArtifactName: dist
