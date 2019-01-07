@@ -8,9 +8,9 @@
 
 ![build status](https://dealogic.visualstudio.com/DefaultCollection/_apis/public/build/definitions/4cd19643-db3a-4dcc-b481-76a7800dd64d/7871/badge)
 
-### Special Thanks to
-## Mykola Tarasyuk for creating the [Reference Conflicts Analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension).
-## Chris Lovett for creating the [DgmlImage command line tool](https://www.nuget.org/packages/DgmlImage/).
+## Special Thanks to
+### Mykola Tarasyuk for creating the [Reference Conflicts Analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension).
+### Chris Lovett for creating the [DgmlImage command line tool](https://www.nuget.org/packages/DgmlImage/).
 
 ## Content
 
