@@ -10,8 +10,7 @@
 ### Mykola Tarasyuk for creating the [Reference Conflicts Analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension).
 ### Chris Lovett for creating the [DgmlImage command line tool](https://www.nuget.org/packages/DgmlImage/).
 
-TODO: change it
-![build status](https://dealogic.visualstudio.com/DefaultCollection/_apis/public/build/definitions/4cd19643-db3a-4dcc-b481-76a7800dd64d/7871/badge)
+![build status](https://dealogic.visualstudio.com/Dealogic/_apis/build/status/reference-conflicts-analyzer-azure-devops-task)
 
 ## Content
 
