@@ -45,10 +45,10 @@ Add the following step into your `yaml` build definition:
     pathOfFileToAnalyze: '{The entry point of the .NET application to analyze.}'
 ```
 
-Any reference conflicts can be reported as an issue:
+Reference conflicts are reported as issues (warnings/errors):
 ![Reported Issues](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/IssuesAreReported.png)
 
-The dependency graph is reported as a diagram onto the build summary page:
+Dependency graph is published as a diagram onto the build summary page:
 ![Dependency Graph](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/DiagramOnBuildResult.png)
 
 See the next section for additional settings.

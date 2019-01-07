@@ -1,6 +1,6 @@
 {
   "name": "reference-conflicts-analyzer-azure-devops-task",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Azure DevOps build task to analyze reference conflicts and dependency graph of .NET applications.",
   "main": "index.js",
   "author": "Dealogic",
