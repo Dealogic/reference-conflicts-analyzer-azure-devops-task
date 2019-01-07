@@ -1,10 +1,10 @@
-# webpack build task
+# reference conflicts analyzer build task
 
-### A build task for [Visual Studio Team Services (VSTS)](https://www.visualstudio.com/fr-fr/products/visual-studio-team-services-vs.aspx) made with ♥ by
+### A build task for [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/) pipelines made with ♥ by
 
 [![dealogic logo](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/dealogic-logo.png)](http://www.dealogic.com)
 
-### to bundle your assets, scripts, images and styles with webpack.
+### to analyze reference conflicts in your .NET applications.
 
 ![build status](https://dealogic.visualstudio.com/DefaultCollection/_apis/public/build/definitions/4cd19643-db3a-4dcc-b481-76a7800dd64d/7871/badge)
 
@@ -34,107 +34,25 @@ This build step is using the webpack's command line tool to compile a 'web' appl
 
 ## <a id="usage"></a>Usage
 
-Add the task to your build configuration:
-
-![Add webpack task](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/TaskCatalog.png)
-
-By default without any configuration the build task is trying to run the locally installed webpack.js from the root folder in the repository and trying to pick up the `webpack.config.js`.
-
-Through the `webpack cli arguments` setting custom arguments can be passed to the webpack cli:
-
-```
--p --display normal
-```
-
-Errors and Warnings can be treated differently:
-* treat errors as (errors / warnings / info)
-* treat warnings as (errors / warnings / info)
-
-Warnings means the task will partially succeed, in case of errors the task will fail. If there are no errors and no warnings, then the task will succeed. You can treat the errors as warnings, so in case of errors, the task will just partially succeed. Or if you would like to ignore the warnings, those should be handled as info.
-
-![webpack arguments](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/WebpackArguments.png)
-
-The webpack build errors and warnings are reported under the issues / build section on the summary page:
-
-![webpack build issues](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/WebpackBuildIssues.png)
-
-The webpack build result section is added onto the summary page to summarize the result:
-
-![webpack build result](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/WebpackBuildResult.png)
-
-### <a id="advanced-settings"></a>Advanced Settings
-
-- Working folder where webpack command is run. If you leave it blank it is the root of the repo.
-- Location of the webpack cli. By default it is the locally installed webpack node module in the working folder, e.g. `./node_modules/webpack/bin/webpack.js`.
-- Location of the Stats.js. By default it is the locally installed webpack node module in the working folder, e.g. `./node_modules/webpack/lib/Stats.js`.
-
-![Advanced settings](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/AdvancedSettings.png)
-
-### <a id="multiple-build-steps"></a>Multiple Build Steps
-
-Multiple webpack build steps are supported now. To distinguish the webpack build steps on the summary page
-and in the list of issues, set the display name properly for the steps:
-
-![Multiple setps with different name](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/MultipleStepsWithDifferentName.png)
-
-If the webpack projects are not even in the root folder, then don't forget to modify it in the advanced settings like this:
-
-![Different working folder](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/ModifiedWorkingFolder.png)
-
-The issues in case of multiple build steps:
-
-![Issues section for multiple steps](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/IssuesForMultipleSteps.png)
-
-The result sections in case of multiple build steps:
-
-![Result sections for multiple steps](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/screenshots/ResultSectionsForMultipleSteps.png)
-
 ## <a id="summary-of-task-settings"></a>Summary of Task Settings
 
 Name | Required | Default Value | Description
 --- | :---: | --- | ---
-webpack cli arguments | false | | Arguments to pass to the webpack cli.
-treat errors as | true | errors | How to treat errors. Options are: errors (breaks build) / warnings (marks build as partially succeeded) / info (reports errors as info).
-treat warnings as | true | warnings | How to treat warnings. Options are: errors (breaks build) / warnings (marks build partially succeeded) / info (reports warnings as info).
-workingFolder | false | | Working folder where webpack compilation is run. If you leave it blank it is the root of the repository.
-webpack cli location | true | ./node_modules/webpack/bin/webpack.js | Location of the webpack cli. By default it's the locally installed webpack cli.
-stats.js Location | true | ./node_modules/webpack/lib/Stats.js | Location of the Stats.js. By default it's the Stats.js from the locally installed webpack.
+pathOfFileToAnalyze | true | | The entry point of the .NET application to analyze.
+pathOfConfigFile | false | | The location of the configuration file that can contain assembly binding redirections.
+ignoreSystemAssemblies | true | true | Ignore the system assemblies from the analysis. By default those won't be included.
+treatVersionConflictsAs | true | warnings | How the version conflicts are reported. By default every version conflicts are reported as warnings.
+treatResolvedVersionConflictsAs | true | warnings | How the resolved version conflicts are reported. By default every version conflicts that are resolved in a configuration file are reported as warnings.
+treatOtherConflictsAs | true | warnings | How the other conflicts are reported. By default every other conflicts are reported as warnings.
+workingFolder | false | | Working folder where the reference conflicts analysis will run. If you leave it blank it is the root of the repository.
+referenceConflictsAnalyzerCliDownloadUrl | true | https://github.com/marss19/reference-conflicts-analyzer/releases/download/v.1.0.7/ReferenceConflictAnalyzer.CommandLine.1.0.7.zip | The URL of the Reference Conflicts Analyzer command line tool.
 
 ## <a id="release-notes"></a>Release Notes
 
-* 4.0.4 (24/05/2018)
-    * Dependencies are updated to fix security vulnerabilities (though it was just in one of the samples).
-* 4.0.3 (29/03/2018)
-    * The `--display "none"` flag is working properly with webpack 4.
-* 4.0.2 (27/01/2018)
-    * Documentation is updated.
-* 4.0.1 (27/01/2018)
-    * Errors and Warnings are reported correctly in the webpack like logs based on the --display none/errors-only/minimal/normal/detailed/verbose option.
-* 4.0.0 (27/01/2018)
-    * Using webpack-cli again instead of node.js API.
-* 3.2.2 (03/10/2017)
-    * Avoid webpack task summary section overflow with adding scrollbar.
-    * Webpack task summary section uses same font as other sections.
-* 3.2.1 (22/09/2017)
-    * Replacing `[]` brackets to `()` parenthesis in the title of the result summary section.
-* 3.2.0 (22/09/2017)
-    * Support `[]` brackets in the display name of the task.
-* 3.1.0 (21/09/2017)
-    * Support for TypeScript webpack configuration is added.
-    * The ts-node module location can be modified.
-    * The ts-node module options file location can be supplied.
-* 3.0.19 (03/07/2017)
-    * As the build step is using webpack's node.js API the arguments setting is gone. Instead of that there's the webpack config file location where custom configuration files can be specified for the compilation.
-    * The setting of webpack.js location is gone, instead of that use webpack module location if you don't want to use the locally installed webpack module.
-    * The webpack build step summary section is using webpack node.js API to show the result information.
-    * The webpack build step now is logging the summary section onto the log section as well.
-
-* 2.1.3 (22/05/2017)
-* 2.1.2 (22/05/2017)
-* 2.1.0 (22/05/2017)
-* 2.0.2 (16/05/2017)
-* 1.1.1 (29/03/2017)
-* 1.1.0 (21/01/2017)
+* 1.0.0 (07/01/2019)
+    * First stable version.
+    * Analyze reference conflicts in .NET application.
+    * Shows dependency graph on the build summary page.
 
 ## <a id="license"></a>License
 
