@@ -49,7 +49,7 @@ treatVersionConflictsAs | true | warnings | How the version conflicts are report
 treatResolvedVersionConflictsAs | true | warnings | How the resolved version conflicts are reported. By default every version conflicts that are resolved in a configuration file are reported as warnings.
 treatOtherConflictsAs | true | warnings | How the other conflicts are reported. By default every other conflicts are reported as warnings.
 workingFolder | false | | Working folder where the reference conflicts analysis will run. If you leave it blank it is the root of the repository.
-referenceConflictsAnalyzerCliDownloadUrl | true | https://github.com/marss19/reference-conflicts-analyzer/releases/download/v.1.0.7/ReferenceConflictAnalyzer.CommandLine.1.0.7.zip | The URL of the Reference Conflicts Analyzer command line tool.
+referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https://github.com/marss19/reference-conflicts-analyzer/releases/download/v.1.0.7/ReferenceConflictAnalyzer.CommandLine.1.0.7.zip) | The URL of the Reference Conflicts Analyzer command line tool.
 
 ## <a id="release-notes"></a>Release Notes
 
