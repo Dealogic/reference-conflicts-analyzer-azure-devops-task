@@ -39,6 +39,17 @@ This build step is using Mykola Tarasyuk's [reference conflicts analyzer command
 
 ## <a id="usage"></a>Usage
 
+Add the following step into your `yml` build definition:
+
+```
+- task: Dealogic.reference-conflicts-analyzer-azure-devops-task.reference-conflicts-analyzer.reference-conflicts-analyzer@1
+  displayName: "Reference Conflicts Analyzer"
+  inputs:
+    pathOfFileToAnalyze: '{The entry point of the .NET application to analyze.}'
+```
+
+See the next section for additional settings.
+
 ## <a id="summary-of-task-settings"></a>Summary of Task Settings
 
 Name | Required | Default Value | Description
