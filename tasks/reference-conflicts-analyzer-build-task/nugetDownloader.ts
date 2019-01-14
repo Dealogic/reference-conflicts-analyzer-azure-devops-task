@@ -17,6 +17,16 @@ export const downloadNuget = async (workingFolder: string) => {
             stream.on("close", () => {
                 console.log(`Download is completed.`);
 
+                const nugetConfig =
+`<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
+  </packageSources>
+</configuration>`;
+
+                fs.writeFileSync(path.resolve(workingFolder, "nuget.config"), nugetConfig);
+
                 resolve();
             });
         });

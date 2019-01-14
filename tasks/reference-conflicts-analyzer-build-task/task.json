@@ -17,7 +17,7 @@
     "version": {
         "Major": 1,
         "Minor": 0,
-        "Patch": 0
+        "Patch": 1
     },
     "minimumAgentVersion": "1.95.0",
     "groups": [
@@ -54,7 +54,7 @@
         {
             "name": "treatVersionConflictsAs",
             "type": "pickList",
-            "label": "treat conflicts as",
+            "label": "treat version conflicts as",
             "defaultValue": "warnings",
             "required": true,
             "helpMarkDown": "How to treat version conflicts.",
@@ -67,7 +67,7 @@
         {
             "name": "treatResolvedVersionConflictsAs",
             "type": "pickList",
-            "label": "treat conflicts as",
+            "label": "treat resolved version conflicts as",
             "defaultValue": "warnings",
             "required": true,
             "helpMarkDown": "How to treat version conflicts are resolved by configuration file.",
@@ -80,7 +80,7 @@
         {
             "name": "treatOtherConflictsAs",
             "type": "pickList",
-            "label": "treat conflicts as",
+            "label": "treat other reference conflicts as",
             "defaultValue": "warnings",
             "required": true,
             "helpMarkDown": "How to treat other reference conflicts.",

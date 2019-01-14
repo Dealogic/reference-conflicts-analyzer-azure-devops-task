@@ -2,7 +2,7 @@
 
 ### A build task for [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/) pipelines made with ♥ by
 
-[![dealogic logo](https://raw.githubusercontent.com/Dealogic/webpack-vsts-extension/master/dealogic-logo.png)](http://www.dealogic.com)
+[![dealogic logo](https://raw.githubusercontent.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/master/dealogic-logo.png)](http://www.dealogic.com)
 
 ### to analyze reference conflicts in your .NET applications.
 
@@ -68,6 +68,10 @@ referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https:/
 
 ## <a id="release-notes"></a>Release Notes
 
+* 1.0.1 (14/01/2019)
+    * Using custom nuget.config to download DgmlImage library from nuget.org.
+    * Links are fixed in documentation.
+    * Task input labels are fixed.
 * 1.0.0 (07/01/2019)
     * First stable version.
     * Analyze reference conflicts in .NET application.
@@ -75,4 +79,4 @@ referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https:/
 
 ## <a id="license"></a>License
 
-[MIT](https://github.com/Dealogic/webpack-vsts-extension/blob/master/LICENSE)
+[MIT](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/blob/master/LICENSE)
