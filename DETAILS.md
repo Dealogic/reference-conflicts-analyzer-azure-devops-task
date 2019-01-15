@@ -68,7 +68,7 @@ referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https:/
 
 ## <a id="release-notes"></a>Release Notes
 
-* 1.0.2 (15/01/2019)
+* 1.0.3 (15/01/2019)
     * Azure DevOps API authentication issues are fixed.
 * 1.0.1 (14/01/2019)
     * Using custom nuget.config to download DgmlImage library from nuget.org.
