@@ -6,30 +6,30 @@ const getWebApi = () => {
     const authHandler = getPersonalAccessTokenHandler(token);
     const colllectionUri = tl.getVariable("System.TeamFoundationCollectionUri");
 
+    console.log(`Connecting to Web API '${colllectionUri}'...`);
     return new WebApi(colllectionUri, authHandler);
 };
 
 export const getAttachmentUrl = async (taskDisplayName: string) => {
-    const webApi = getWebApi();
-    const buildApi = await webApi.getBuildApi();
+    try {
+        const webApi = getWebApi();
+        const buildApi = await webApi.getBuildApi();
 
-    const projectId = tl.getVariable("System.TeamProjectId");
-    const buildId = tl.getVariable("Build.BuildId");
+        const projectId = tl.getVariable("System.TeamProjectId");
+        const buildId = tl.getVariable("Build.BuildId");
 
-    let attachment = null;
+        let attachment = null;
 
-    while (!attachment) {
-        try {
-            console.log(
-                `Trying to get attachments from collection URI: ${tl.getVariable("System.TeamFoundationCollectionUri")}; project id: ${projectId}; build id: ${buildId}...`);
-            const attachments = await buildApi.getAttachments(projectId, Number(buildId), "rca-result");
+        while (!attachment) {
+                console.log(`Trying to get attachments from for project id: '${projectId}' and build id: '${buildId}'...`);
+                const attachments = await buildApi.getAttachments(projectId, Number(buildId), "rca-result");
 
-            attachment = attachments.find((a) => a.name === taskDisplayName);
-        } catch (err) {
-            console.log(err);
-            throw err;
+                attachment = attachments.find((a) => a.name === taskDisplayName);
         }
-    }
 
-    return attachment._links.self.href;
+        return attachment._links.self.href;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
 };
