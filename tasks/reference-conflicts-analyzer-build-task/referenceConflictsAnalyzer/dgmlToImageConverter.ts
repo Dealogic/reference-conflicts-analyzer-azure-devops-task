@@ -4,9 +4,12 @@ import * as tl from "azure-pipelines-task-lib/task";
 import * as fs from "fs";
 import { getAttachmentUrl } from "./attachmentsHelper";
 
-const executeDgmlToImageConverterCommand = async (workingFolder: string) => {
-    const commandToExecute =
-        `"${path.resolve(workingFolder, "DgmlImage.1.0.0", "tools", "DgmlImage.exe")}" "${path.resolve(workingFolder, "rca.dgml")}" /legend /out:"${workingFolder}"`;
+const executeDgmlToImageConverterCommand = async (workingFolder: string, diagramZoomLevel: number) => {
+    let commandToExecute = `"${path.resolve(workingFolder, "DgmlImage.1.0.0", "tools", "DgmlImage.exe")}"`;
+    commandToExecute += ` "${path.resolve(workingFolder, "rca.dgml")}"`;
+    commandToExecute += ` /zoom:${diagramZoomLevel}`;
+    commandToExecute += ` /legend`;
+    commandToExecute += ` /out:"${workingFolder}"`;
 
     return new Promise((resolve, reject) => {
         console.log(`Executing command: ${commandToExecute}`);
@@ -22,8 +25,8 @@ const executeDgmlToImageConverterCommand = async (workingFolder: string) => {
     });
 };
 
-export const convertDgmlToImage = async (workingFolder: string, taskDisplayName: string) => {
-    await executeDgmlToImageConverterCommand(workingFolder);
+export const convertDgmlToImage = async (workingFolder: string, taskDisplayName: string, diagramZoomLevel: number) => {
+    await executeDgmlToImageConverterCommand(workingFolder, diagramZoomLevel);
 
     tl.addAttachment("rca-result", taskDisplayName, path.resolve(workingFolder, "rca.png"));
     const attachmentUrl = await getAttachmentUrl(taskDisplayName);

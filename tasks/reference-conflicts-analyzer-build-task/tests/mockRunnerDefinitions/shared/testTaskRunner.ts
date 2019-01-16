@@ -13,9 +13,13 @@ const runTestTask = (testRunConfiguration: ITestRunConfiguration) => {
     taskMockRunner.setInput("pathOfFileToAnalyze", testRunConfiguration.pathOfFileToAnalyze);
     taskMockRunner.setInput("pathOfConfigFile", testRunConfiguration.pathOfConfigFile);
     taskMockRunner.setInput("referenceConflictsAnalyzerCliDownloadUrl", testRunConfiguration.referenceConflictsAnalyzerCliDownloadUrl);
+    taskMockRunner.setInput("diagramAttachmentEnabled", "true");
+    taskMockRunner.setInput("diagramZoomLevel", "1");
     taskMockRunner.setInput("treatVersionConflictsAs", "warnings");
     taskMockRunner.setInput("treatResolvedVersionConflictsAs", "warnings");
     taskMockRunner.setInput("treatOtherConflictsAs", "warnings");
+    taskMockRunner.setInput("treatUnusedAssembliesAs", "warnings");
+    taskMockRunner.setInput("treatMissedAssembliesAs", "warnings");
 
     if (testRunConfiguration.workingFolder) {
         taskMockRunner.setInput("workingFolder", testRunConfiguration.workingFolder);

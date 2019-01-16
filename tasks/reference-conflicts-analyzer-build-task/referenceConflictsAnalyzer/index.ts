@@ -39,8 +39,12 @@ export const analyzeReferenceConflicts =
         treatVersionConflictsAs: string,
         treatResolvedVersionConflictsAs: string,
         treatOtherConflictsAs: string,
+        treatUnusedAssembliesAs: string,
+        treatMissedAssembliesAs: string,
         pathOfFileToAnalyze: string,
         ignoreSystemAssemblies: boolean,
+        diagramAttachmentEnabled: boolean,
+        diagramZoomLevel: number,
         pathOfConfigFile?: string) => {
 
         console.log("Running reference conflicts analyzer...");
@@ -53,8 +57,11 @@ export const analyzeReferenceConflicts =
             if (file.endsWith(".dgml")) {
                 fs.renameSync(path.resolve(workingFolder, file), path.resolve(workingFolder, "rca.dgml"));
                 tl.uploadFile(path.resolve(workingFolder, "rca.dgml"));
-                reportConflicts(workingFolder, treatVersionConflictsAs, treatResolvedVersionConflictsAs, treatOtherConflictsAs);
-                await convertDgmlToImage(workingFolder, taskDisplayName);
+                reportConflicts(workingFolder, treatVersionConflictsAs, treatResolvedVersionConflictsAs, treatOtherConflictsAs, treatUnusedAssembliesAs, treatMissedAssembliesAs);
+
+                if (diagramAttachmentEnabled) {
+                    await convertDgmlToImage(workingFolder, taskDisplayName, diagramZoomLevel);
+                }
             }
         }
     };

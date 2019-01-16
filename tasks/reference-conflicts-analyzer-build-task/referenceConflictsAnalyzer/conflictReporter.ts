@@ -7,7 +7,9 @@ export const reportConflicts = (
     workingFolder: string,
     treatVersionConflictsAs: string,
     treatResolvedVersionConflictsAs: string,
-    treatOtherConflictsAs: string) => {
+    treatOtherConflictsAs: string,
+    treatUnusedAssembliesAs: string,
+    treatMissedAssembliesAs: string) => {
 
     const dgmlFileContent = fs.readFileSync(path.resolve(workingFolder, "rca.dgml"), {
         encoding: "utf-8"
@@ -41,6 +43,12 @@ export const reportConflicts = (
             } else if (node.attr.Category === "OtherConflict") {
                 message = `Other conflicts because of '${node.attr.Label}' See attached diagram and dgml file in the logs for more details.`;
                 treatAs = treatOtherConflictsAs;
+            } else if (node.attr.Category === "UnusedAssembly") {
+                message = `The assembly '${node.attr.Label}' is unused.`;
+                treatAs = treatUnusedAssembliesAs;
+            } else if (node.attr.Category === "Missed") {
+                message = `The assembly '${node.attr.Label}' is missed.`;
+                treatAs = treatMissedAssembliesAs;
             }
 
             if (node.attr.Category === "VersionsConflicted" || node.attr.Category === "VersionsConflictResolved") {

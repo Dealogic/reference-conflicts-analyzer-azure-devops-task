@@ -32,7 +32,7 @@ Source code can be found on [GitHub](https://github.com/Dealogic/reference-confl
 
 ## <a id="what-the-build-step-does"></a>What The Build Step Does
 
-This build step is using Mykola Tarasyuk's [reference conflicts analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension) to produce a `dgml` file that represents the dependency graph of a .NET application. With using the [DgmlImage command line tool by Chris Lovett](https://www.nuget.org/packages/DgmlImage/) to create an image that can be attached as a build summary section on to the build result page.
+This build step is using Mykola Tarasyuk's [reference conflicts analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension) to produce a `dgml` file that represents the dependency graph of a .NET application. With using the [DgmlImage command line tool by Chris Lovett](https://www.nuget.org/packages/DgmlImage/) to create an image that can be attached as a build summary section on to the build result page. The generated `dgml` file(s) are attached next to the logs.
 
 ## <a id="usage"></a>Usage
 
@@ -60,16 +60,22 @@ Name | Required | Default Value | Description
 pathOfFileToAnalyze | true | | The entry point of the .NET application to analyze.
 pathOfConfigFile | false | | The location of the configuration file that can contain assembly binding redirections.
 ignoreSystemAssemblies | true | true | Ignore the system assemblies from the analysis. By default those won't be included.
-treatVersionConflictsAs | true | warnings | How the version conflicts are reported. By default every version conflicts are reported as warnings.
-treatResolvedVersionConflictsAs | true | warnings | How the resolved version conflicts are reported. By default every version conflicts that are resolved in a configuration file are reported as warnings.
-treatOtherConflictsAs | true | warnings | How the other conflicts are reported. By default every other conflicts are reported as warnings.
+diagramAttachmentEnabled | true | true | The dependency graph as a diagram will be shown on the build summary page. WARNING! OAuth token must be provided for this to the build step.
+diagramZoomLevel | true | 1 | The zoom level of the attached diagram. By default it's 1. It has to be a floating number.
+treatVersionConflictsAs | true | warnings | How the version conflicts are reported. By default reported as warnings.
+treatResolvedVersionConflictsAs | true | warnings | How the resolved version conflicts (resolved with binding redirection in configuration file) are reported. By default reported as warnings.
+treatOtherConflictsAs | true | warnings | How the other conflicts are reported. By default reported as warnings.
+treatUnusedAssembliesAs | true | warnings | How the unused assemblies are reported. By default reported as warnings.
+treatMissedAssembliesAs | true | warnings | How the assembly is missed are reported. By default reported as warnings.
 workingFolder | false | | Working folder where the reference conflicts analysis will run. If you leave it blank it is the root of the repository.
 referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https://github.com/marss19/reference-conflicts-analyzer/releases/download/v.1.0.7/ReferenceConflictAnalyzer.CommandLine.1.0.7.zip) | The URL of the Reference Conflicts Analyzer command line tool.
 
 ## <a id="release-notes"></a>Release Notes
 
-* 1.0.3 (15/01/2019)
-    * Azure DevOps API authentication issues are fixed.
+* 1.1.0 (16/01/2019)
+    * Option to enable/disable diagram image attachment. If diagram image attachment is enabled, OAuth token has to be enabled to the build step.
+    * Option to change the zoom level of the diagram image attachment.
+    * Unused and missed assemblies are reported.
 * 1.0.1 (14/01/2019)
     * Using custom nuget.config to download DgmlImage library from nuget.org.
     * Links are fixed in documentation.

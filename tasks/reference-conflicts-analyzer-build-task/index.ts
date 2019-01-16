@@ -32,18 +32,26 @@ async function run(): Promise<void> {
         const pathOfFileToAnalyze = tl.getPathInput("pathOfFileToAnalyze", true);
         const pathOfConfigFile = tl.getPathInput("pathOfConfigFile", false);
         const ignoreSystemAssemblies = tl.getBoolInput("ignoreSystemAssemblies", true);
+        const diagramAttachmentEnabled = tl.getBoolInput("diagramAttachmentEnabled", true);
+        const diagramZoomLevel = Number(tl.getInput("diagramZoomLevel", true));
         const treatVersionConflictsAs = tl.getInput("treatVersionConflictsAs", true);
         const treatResolvedVersionConflictsAs = tl.getInput("treatResolvedVersionConflictsAs", true);
         const treatOtherConflictsAs = tl.getInput("treatOtherConflictsAs", true);
+        const treatUnusedAssembliesAs = tl.getInput("treatUnusedAssembliesAs", true);
+        const treatMissedAssembliesAs = tl.getInput("treatMissedAssembliesAs", true);
         const workingFolder = tl.getPathInput("workingFolder", false);
         const referenceConflictsAnalyzerCliDownloadUrl = tl.getInput("referenceConflictsAnalyzerCliDownloadUrl", true);
 
         console.log(`pathOfFileToAnalyze: ${pathOfFileToAnalyze}`);
         console.log(`pathOfConfigFile: ${pathOfConfigFile}`);
         console.log(`ignoreSystemAssemblies: ${ignoreSystemAssemblies}`);
+        console.log(`diagramAttachmentEnabled: ${diagramAttachmentEnabled}`);
+        console.log(`diagramZoomLevel: ${diagramZoomLevel}`);
         console.log(`treatVersionConflictsAs: ${treatVersionConflictsAs}`);
         console.log(`treatResolvedVersionConflictsAs: ${treatResolvedVersionConflictsAs}`);
         console.log(`treatOtherConflictsAs: ${treatOtherConflictsAs}`);
+        console.log(`treatUnusedAssembliesAs: ${treatUnusedAssembliesAs}`);
+        console.log(`treatMissedAssembliesAs: ${treatMissedAssembliesAs}`);
         console.log(`workingFolder: ${workingFolder}`);
         console.log(`referenceConflictsAnalyzerCliDownloadUrl: ${referenceConflictsAnalyzerCliDownloadUrl}`);
 
@@ -59,16 +67,24 @@ async function run(): Promise<void> {
         fs.mkdirSync(tempWorkingFolder);
 
         await downloadReferenceConflictsAnalyzerCli(referenceConflictsAnalyzerCliDownloadUrl, tempWorkingFolder);
-        await downloadNuget(tempWorkingFolder);
-        await downloadDgmlToPngCli(tempWorkingFolder);
+
+        if (diagramAttachmentEnabled) {
+            await downloadNuget(tempWorkingFolder);
+            await downloadDgmlToPngCli(tempWorkingFolder);
+        }
+
         await analyzeReferenceConflicts(
             tempWorkingFolder,
             taskDisplayName,
             treatVersionConflictsAs,
             treatResolvedVersionConflictsAs,
             treatOtherConflictsAs,
+            treatUnusedAssembliesAs,
+            treatMissedAssembliesAs,
             pathOfFileToAnalyze,
             ignoreSystemAssemblies,
+            diagramAttachmentEnabled,
+            diagramZoomLevel,
             pathOfConfigFile);
     } catch (err) {
         tl.setResult(tl.TaskResult.Failed, `${taskDisplayName} failed`);

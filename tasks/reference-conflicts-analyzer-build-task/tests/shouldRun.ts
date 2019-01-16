@@ -14,10 +14,21 @@ export function executeTest(done: MochaDone): void {
     testRunner.run();
 
     assert.isNotTrue(testRunner.failed, testRunner.stdout);
+    assert.equal(testRunner.warningIssues.length, 3, testRunner.stdout);
     assert.equal(
         testRunner.warningIssues[0],
         // tslint:disable-next-line:max-line-length
-        "Different versions of the assembly called 'LibraryA' are referenced by other assembiles. Version 2.0.0.0 is used by 'FirstUserOfLibraryA'. Version 1.2.0.0 is used by 'SecondUserOfLibraryA'.",
+        "Different versions of the assembly called 'LibraryA' are referenced by other assemblies, but resolved by configuration file. Version 1.0.0.0 is used by 'SubprojectA'. Version 2.0.0.0 is used by 'SubprojectB'.",
+        testRunner.stdout);
+
+    assert.equal(
+        testRunner.warningIssues[1],
+        "The assembly 'LibraryC' is missed.",
+        testRunner.stdout);
+
+    assert.equal(
+        testRunner.warningIssues[2],
+        "The assembly 'LibraryD' is unused.",
         testRunner.stdout);
 
     done();
