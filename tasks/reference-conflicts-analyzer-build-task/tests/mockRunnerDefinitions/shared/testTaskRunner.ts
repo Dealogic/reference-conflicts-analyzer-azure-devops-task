@@ -34,6 +34,14 @@ const runTestTask = (testRunConfiguration: ITestRunConfiguration) => {
         console.log("Uploading file...");
     });
 
+    taskMockRunner.registerMockExport("getVariable", (variableName: string) => {
+        if (variableName === "task.displayname") {
+            return "reference-conflicts-analyzer";
+        }
+
+        return "";
+    });
+
     taskMockRunner.registerMockExport("addAttachment", (type: string, name: string) => {
         console.log(`Adding attachment ${type} - ${name}.`);
     });
