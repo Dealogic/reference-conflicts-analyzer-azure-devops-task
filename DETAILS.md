@@ -18,7 +18,7 @@
 * [Source Code](https://marketplace.visualstudio.com/items?itemName=Dealogic.reference-conflicts-analyzer-azure-devops-task#source-code)
 * [What The Build Step Does](https://marketplace.visualstudio.com/items?itemName=Dealogic.reference-conflicts-analyzer-azure-devops-task#what-the-build-step-does)
 * [Usage](https://marketplace.visualstudio.com/items?itemName=Dealogic.reference-conflicts-analyzer-azure-devops-task#usage)
-* [Summary of Task Settings](https://marketplace.visualstudio.com/items?itemName=reference-conflicts-analyzer-azure-devops-task#summary-of-task-settings)
+* [Summary of Task Settings](https://marketplace.visualstudio.com/items?itemName=Dealogic.reference-conflicts-analyzer-azure-devops-task#summary-of-task-settings)
 * [Release Notes](https://marketplace.visualstudio.com/items?itemName=Dealogic.reference-conflicts-analyzer-azure-devops-task#release-notes)
 * [License](https://marketplace.visualstudio.com/items?itemName=Dealogic.reference-conflicts-analyzer-azure-devops-task#license)
 
@@ -54,7 +54,7 @@ Add the following step into your `yaml` build definition:
     pathOfFileToAnalyze: '{The entry point of the .NET application to analyze.}'
 ```
 
-See the [Summary of Task Settings](https://marketplace.visualstudio.com/items?itemName=reference-conflicts-analyzer-azure-devops-task#summary-of-task-settings) for more options.
+See the [Summary of Task Settings](https://marketplace.visualstudio.com/items?itemName=Dealogic.reference-conflicts-analyzer-azure-devops-task#summary-of-task-settings) for more options.
 
 Reference conflicts are reported as issues (warnings/errors):
 ![Reported Issues](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/IssuesAreReported.png)
