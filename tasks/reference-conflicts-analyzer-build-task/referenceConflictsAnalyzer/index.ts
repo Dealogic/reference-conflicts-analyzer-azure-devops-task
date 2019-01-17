@@ -60,7 +60,7 @@ export const analyzeReferenceConflicts =
 
                 fs.renameSync(path.resolve(workingFolder, file), dgmlFilePath);
                 tl.uploadFile(dgmlFilePath);
-                tl.addAttachment(taskDisplayName, "rca-dgml-result", dgmlFilePath);
+                tl.addAttachment(taskDisplayName, "rca-dgml-result.dgml", dgmlFilePath);
                 reportConflicts(workingFolder, treatVersionConflictsAs, treatResolvedVersionConflictsAs, treatOtherConflictsAs, treatUnusedAssembliesAs, treatMissedAssembliesAs);
 
                 if (diagramAttachmentEnabled) {

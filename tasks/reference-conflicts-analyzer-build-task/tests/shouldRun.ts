@@ -15,8 +15,8 @@ export function executeTest(done: MochaDone): void {
 
     assert.isNotTrue(testRunner.failed, testRunner.stdout);
 
-    assert.include(testRunner.stdout, "Adding attachment reference-conflicts-analyzer - rca-image-result.", testRunner.stdout);
-    assert.include(testRunner.stdout, "Adding attachment reference-conflicts-analyzer - rca-dgml-result.", testRunner.stdout);
+    assert.include(testRunner.stdout, "Adding attachment reference-conflicts-analyzer - rca-image-result.png.", testRunner.stdout);
+    assert.include(testRunner.stdout, "Adding attachment reference-conflicts-analyzer - rca-dgml-result.dgml.", testRunner.stdout);
     assert.include(testRunner.stdout, "Uploading file...", testRunner.stdout);
 
     assert.equal(testRunner.warningIssues.length, 3, testRunner.stdout);

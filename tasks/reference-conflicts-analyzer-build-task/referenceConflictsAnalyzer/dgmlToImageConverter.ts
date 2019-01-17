@@ -25,5 +25,5 @@ const executeDgmlToImageConverterCommand = async (workingFolder: string, diagram
 
 export const convertDgmlToImage = async (workingFolder: string, taskDisplayName: string, diagramZoomLevel: number) => {
     await executeDgmlToImageConverterCommand(workingFolder, diagramZoomLevel);
-    tl.addAttachment(taskDisplayName, "rca-image-result", path.resolve(workingFolder, "rca.png"));
+    tl.addAttachment(taskDisplayName, "rca-image-result.png", path.resolve(workingFolder, "rca.png"));
 };

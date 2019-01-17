@@ -43,9 +43,9 @@ const delay = async (ms: number) => {
 };
 
 export const getDgmlFileAttachmentUrl = async (taskDisplayName: string) => {
-    return await getAttachmentForType(taskDisplayName, "rca-dgml-result");
+    return await getAttachmentForType(taskDisplayName, "rca-dgml-result.dgml");
 };
 
 export const getImageAttachmentUrl = async (taskDisplayName: string) => {
-    return await getAttachmentForType(taskDisplayName, "rca-image-result");
+    return await getAttachmentForType(taskDisplayName, "rca-image-result.png");
 };

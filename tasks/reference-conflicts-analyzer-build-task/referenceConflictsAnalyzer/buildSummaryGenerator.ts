@@ -8,8 +8,8 @@ export const generateBuildSummary = async (taskDisplayName: string, workingFolde
     const imageAttachmentUrl = await getImageAttachmentUrl(taskDisplayName);
     const dgmlFileAttachmentUrl = await getDgmlFileAttachmentUrl(taskDisplayName);
 
-    let summary = "The generated `dgml` file can be downloaded from ";
-    summary += `[here](${dgmlFileAttachmentUrl})`;
+    let summary = "[The generated `dgml` file can be downloaded from ";
+    summary += `here](${dgmlFileAttachmentUrl})`;
     summary += os.EOL;
     summary += `<img alt="${taskDisplayName}" src="${imageAttachmentUrl}" />`;
     fs.writeFileSync(path.resolve(workingFolder, "rca.md"), summary);

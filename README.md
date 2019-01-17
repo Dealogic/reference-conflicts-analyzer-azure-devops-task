@@ -77,7 +77,7 @@ referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https:/
 
 ## <a id="release-notes"></a>Release Notes
 
-* 1.2.1 (17/01/2019)
+* 1.2.2 (17/01/2019)
     * Link to download the `dgml` file on the build summary page.
 * 1.1.0 (16/01/2019)
     * Option to enable/disable diagram image attachment. If diagram image attachment is enabled, OAuth token has to be enabled to the build step.
