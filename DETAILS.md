@@ -32,9 +32,18 @@ Source code can be found on [GitHub](https://github.com/Dealogic/reference-confl
 
 ## <a id="what-the-build-step-does"></a>What The Build Step Does
 
-This build step is using Mykola Tarasyuk's [reference conflicts analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension) to produce a `dgml` file that represents the dependency graph of a .NET application. With using the [DgmlImage command line tool by Chris Lovett](https://www.nuget.org/packages/DgmlImage/) to create an image that can be attached as a build summary section on to the build result page. The generated `dgml` file(s) are attached next to the logs.
+This build step is using Mykola Tarasyuk's [reference conflicts analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension) to produce a `dgml` file that represents the dependency graph of a .NET application.
+
+With using the [DgmlImage command line tool by Chris Lovett](https://www.nuget.org/packages/DgmlImage/) to create an image that can be attached as a build summary section on to the build result page.
+
+On the other hand the generated `dgml` file(s) are attached next to the logs and downloadable from the build summary section too.
 
 ## <a id="usage"></a>Usage
+
+The build task would like to use the Azure DevOps API, therefore `scripts to access the OAuth token` must be enabled.
+It can be done on the additional options section of the agent job.
+
+![OAuth token must be enabled](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/OAuthTokenEnabled.png)
 
 Add the following step into your `yaml` build definition:
 
@@ -45,18 +54,13 @@ Add the following step into your `yaml` build definition:
     pathOfFileToAnalyze: '{The entry point of the .NET application to analyze.}'
 ```
 
-In case of visual designed build definition, allow scripts to access the OAuth token must be enabled. 
-It can be done on the additional options of the agent job section.
-
-![OAuth token must be enabled](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/OAuthTokenEnabled.png)
+See the [Summary of Task Settings](https://marketplace.visualstudio.com/items?itemName=reference-conflicts-analyzer-azure-devops-task#summary-of-task-settings) for more options.
 
 Reference conflicts are reported as issues (warnings/errors):
 ![Reported Issues](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/IssuesAreReported.png)
 
 Dependency graph is published as a diagram onto the build summary page:
 ![Dependency Graph](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/DiagramOnBuildResult.png)
-
-See the next section for additional settings.
 
 ## <a id="summary-of-task-settings"></a>Summary of Task Settings
 
@@ -77,7 +81,7 @@ referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https:/
 
 ## <a id="release-notes"></a>Release Notes
 
-* 1.2.2 (17/01/2019)
+* 1.2.3 (17/01/2019)
     * Link to download the `dgml` file on the build summary page.
 * 1.1.0 (16/01/2019)
     * Option to enable/disable diagram image attachment. If diagram image attachment is enabled, OAuth token has to be enabled to the build step.
