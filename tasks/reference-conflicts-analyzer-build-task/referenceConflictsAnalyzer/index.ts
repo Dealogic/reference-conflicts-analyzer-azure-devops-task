@@ -4,6 +4,7 @@ import * as fs from "fs";
 import { reportConflicts } from "./conflictReporter";
 import { convertDgmlToImage } from "./dgmlToImageConverter";
 import * as tl from "azure-pipelines-task-lib/task";
+import { generateBuildSummary } from "./buildSummaryGenerator";
 
 const executeReferenceConflictsAnalyzerCli = async (workingFolder: string, pathOfFileToAnalyze: string, ignoreSystemAssemblies: boolean, pathOfConfigFile?: string) => {
     const cliPath = path.resolve(workingFolder, "ReferenceConflictAnalyzer.CommandLine.exe");
@@ -65,6 +66,8 @@ export const analyzeReferenceConflicts =
                 if (diagramAttachmentEnabled) {
                     await convertDgmlToImage(workingFolder, taskDisplayName, diagramZoomLevel);
                 }
+
+                generateBuildSummary(taskDisplayName, workingFolder);
             }
         }
     };

@@ -1,6 +1,6 @@
 {
   "name": "reference-conflicts-analyzer-build-task",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Analyze reference conflicts and dependency graph of .NET applications.",
   "main": "index.js",
   "scripts": {},
