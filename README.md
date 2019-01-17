@@ -45,6 +45,11 @@ Add the following step into your `yaml` build definition:
     pathOfFileToAnalyze: '{The entry point of the .NET application to analyze.}'
 ```
 
+In case of visual designed build definition, allow scripts to access the OAuth token must be enabled. 
+It can be done on the additional options of the agent job section.
+
+![OAuth token must be enabled](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/OAuthTokenEnabled.png)
+
 Reference conflicts are reported as issues (warnings/errors):
 ![Reported Issues](https://github.com/Dealogic/reference-conflicts-analyzer-azure-devops-task/raw/master/screenshots/IssuesAreReported.png)
 
@@ -60,7 +65,7 @@ Name | Required | Default Value | Description
 pathOfFileToAnalyze | true | | The entry point of the .NET application to analyze.
 pathOfConfigFile | false | | The location of the configuration file that can contain assembly binding redirections.
 ignoreSystemAssemblies | true | true | Ignore the system assemblies from the analysis. By default those won't be included.
-diagramAttachmentEnabled | true | true | The dependency graph as a diagram will be shown on the build summary page. WARNING! OAuth token must be provided for this to the build step.
+diagramAttachmentEnabled | true | true | The dependency graph as a diagram will be shown on the build summary page.
 diagramZoomLevel | true | 1 | The zoom level of the attached diagram. By default it's 1. It has to be a floating number.
 treatVersionConflictsAs | true | warnings | How the version conflicts are reported. By default reported as warnings.
 treatResolvedVersionConflictsAs | true | warnings | How the resolved version conflicts (resolved with binding redirection in configuration file) are reported. By default reported as warnings.
@@ -72,6 +77,8 @@ referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https:/
 
 ## <a id="release-notes"></a>Release Notes
 
+* 1.2.0 (17/01/2019)
+    * Link to download the `dgml` file on the build summary page.
 * 1.1.0 (16/01/2019)
     * Option to enable/disable diagram image attachment. If diagram image attachment is enabled, OAuth token has to be enabled to the build step.
     * Option to change the zoom level of the diagram image attachment.

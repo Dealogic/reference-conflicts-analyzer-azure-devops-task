@@ -10,11 +10,7 @@ const getWebApi = () => {
     return new WebApi(collectionUri, authHandler);
 };
 
-const delay = async (ms: number) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
-export const getAttachmentUrl = async (taskDisplayName: string) => {
+const getAttachmentForType = async (taskDisplayName: string, attachmentName: string) => {
     try {
         const webApi = getWebApi();
         const buildApi = await webApi.getBuildApi();
@@ -26,9 +22,9 @@ export const getAttachmentUrl = async (taskDisplayName: string) => {
 
         while (!attachment) {
                 console.log(`Trying to get attachments from for project id: '${projectId}' and build id: '${buildId}'.`);
-                const attachments = await buildApi.getAttachments(projectId, Number(buildId), "rca-result");
+                const attachments = await buildApi.getAttachments(projectId, Number(buildId), taskDisplayName);
 
-                attachment = attachments.find((a) => a.name === taskDisplayName);
+                attachment = attachments.find((a) => a.name === attachmentName);
 
                 if (!attachment) {
                     delay(500);
@@ -40,4 +36,16 @@ export const getAttachmentUrl = async (taskDisplayName: string) => {
         console.log(err);
         throw err;
     }
+};
+
+const delay = async (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+export const getDgmlFileAttachmentUrl = async (taskDisplayName: string) => {
+    return await getAttachmentForType(taskDisplayName, "rca-dgml-result");
+};
+
+export const getImageAttachmentUrl = async (taskDisplayName: string) => {
+    return await getAttachmentForType(taskDisplayName, "rca-image-result");
 };

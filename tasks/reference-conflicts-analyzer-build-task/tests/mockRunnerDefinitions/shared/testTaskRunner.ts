@@ -1,5 +1,4 @@
 import { ITestRunConfiguration } from "./ITestRunConfiguration";
-import { getAttachmentUrl } from "../../../referenceConflictsAnalyzer/attachmentsHelper";
 import createTaskMockRunner from "./taskMockRunnerFactory";
 
 const runTestTask = (testRunConfiguration: ITestRunConfiguration) => {
@@ -35,13 +34,16 @@ const runTestTask = (testRunConfiguration: ITestRunConfiguration) => {
         console.log("Uploading file...");
     });
 
-    taskMockRunner.registerMockExport("addAttachment", () => {
-        console.log("Adding attachment...");
+    taskMockRunner.registerMockExport("addAttachment", (type: string, name: string) => {
+        console.log(`Adding attachment ${type} - ${name}.`);
     });
 
     taskMockRunner.registerMock("./attachmentsHelper", {
-        getAttachmentUrl: () => {
-            console.log("Getting attachment url...");
+        getImageAttachmentUrl: () => {
+            console.log("Getting image attachment url...");
+        },
+        getDgmlFileAttachmentUrl: () => {
+            console.log("Getting dgml file attachment url...");
         }
     });
 
