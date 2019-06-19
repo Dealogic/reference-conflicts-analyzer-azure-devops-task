@@ -3,6 +3,9 @@ os:
 language: node_js
 node_js:
   "8"
+env:
+  # fixing the 'travis-ci hangs on after a successful build issue'
+  - YARN_GPG=no
 install:
   yarn release
 script:
