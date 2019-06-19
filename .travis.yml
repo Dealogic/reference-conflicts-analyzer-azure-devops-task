@@ -1,9 +1,19 @@
-language: node_js
 os:
   windows
+language: node_js
 node_js:
   "8"
+env:
+  # fixing the 'travis-ci hangs on after a successful build issue'
+  - YARN_GPG=no
 install:
   yarn release
 script:
   yarn test
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: node node_modules/tfx-cli/_build/tfx-cli.js extension publish --vsix ./dist/Dealogic.reference-conflicts-analyzer-azure-devops-task.vsix --token $VS_TOKEN
+  on:
+    branch: master

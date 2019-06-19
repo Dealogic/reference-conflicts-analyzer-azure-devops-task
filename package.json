@@ -1,6 +1,6 @@
 {
   "name": "reference-conflicts-analyzer-azure-devops-task",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "Azure DevOps build task to analyze reference conflicts and dependency graph of .NET applications.",
   "main": "index.js",
   "author": "Dealogic",
@@ -19,7 +19,7 @@
     "tslint": "tslint 'tasks/reference-conflicts-analyzer-build-task/**/*.ts' -e 'tasks/reference-conflicts-analyzer-build-task/node_modules/**/*'",
     "build-without-setup": "tsc && yarn tslint",
     "build": "yarn setup && yarn build-without-setup",
-    "release": "yarn build && node updateVersion.js && node node_modules/tfx-cli/_build/tfx-cli.js extension create --manifest-glob vss-extension.json --output-path ./dist",
+    "release": "yarn build && node updateVersion.js && node node_modules/tfx-cli/_build/tfx-cli.js extension create --manifest-glob vss-extension.json --output-path ./dist/Dealogic.reference-conflicts-analyzer-azure-devops-task.vsix",
     "test-reporter": "cd tasks/reference-conflicts-analyzer-build-task && mocha tests/suite.js --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results.xml",
     "test": "yarn build-without-setup && cd tasks/reference-conflicts-analyzer-build-task && mocha tests/suite.js"
   },
