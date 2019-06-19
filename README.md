@@ -6,7 +6,7 @@
 
 ### to analyze reference conflicts in your .NET applications.
 
-![build status](https://dealogic.visualstudio.com/Dealogic/_apis/build/status/reference-conflicts-analyzer-azure-devops-task)
+![build status](https://travis-ci.org/Dealogic/reference-conflicts-analyzer-azure-devops-task.svg?branch=master)
 
 ## Special Thanks to
 ### Mykola Tarasyuk for creating the [Reference Conflicts Analyzer command line tool](https://github.com/marss19/reference-conflicts-analyzer/tree/master/ReferenceConflictAnalyser.VSExtension).
@@ -81,6 +81,8 @@ referenceConflictsAnalyzerCliDownloadUrl | true | [Link to download CLI](https:/
 
 ## <a id="release-notes"></a>Release Notes
 
+* 1.3.0 (19/06/2019)
+    * New build/deployment badge on README page. (as build and deployment are on travis-ci.org)
 * 1.2.4 (17/01/2019)
     * Link to download the `dgml` file on the build summary page.
 * 1.1.0 (16/01/2019)
